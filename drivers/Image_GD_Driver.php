@@ -38,12 +38,15 @@ class Image_GD_Driver extends Image_Driver
         switch ($image['type']) {
             case IMAGETYPE_JPEG:
                 $create = 'imagecreatefromjpeg';
+                $save = 'imagejpeg';
                 break;
             case IMAGETYPE_GIF:
                 $create = 'imagecreatefromgif';
+                $save = 'imagegif';
                 break;
             case IMAGETYPE_PNG:
                 $create = 'imagecreatefrompng';
+                $save = 'imagepng';
                 break;
         }
 
