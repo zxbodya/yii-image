@@ -326,6 +326,11 @@ class Image_GD_Driver extends Image_Driver
         return imagefilter($this->tmp_image, IMG_FILTER_GRAYSCALE);
     }
 
+    public function colorize($params)
+    {
+        return imagefilter($this->tmp_image, IMG_FILTER_COLORIZE, $params['r'], $params['g'], $params['b'], $params['a']);
+    }
+
     public function emboss($unused)
     {
         return imagefilter($this->tmp_image, IMG_FILTER_EMBOSS);

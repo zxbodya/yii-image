@@ -316,6 +316,16 @@ class Image
         return $this;
     }
 
+    public function colorize($r, $g, $b, $a)
+    {
+        $this->actions['colorize'] = array(
+            'r' => $r,
+            'g' => $g,
+            'b' => $b,
+            'a' => $a,
+        );
+    }
+
     /**
      * Emboss an image.
      *

@@ -184,6 +184,12 @@ class Image_ImageMagick_Driver extends Image_Driver
         return true;
     }
 
+    public function colorize($params)
+    {
+        //todo: implement this as in GD driver
+        throw new Exception('Unimplemented');
+    }
+
     public function emboss($radius)
     {
         $this->_args[] = '-emboss ' . $radius;
