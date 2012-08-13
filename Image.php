@@ -492,4 +492,42 @@ class Image
         return $res;
     }
 
+    /**
+     * Resize an image to a specific width and height. By default, Kohana will
+     * maintain the aspect ratio using the width as the master dimension. If you
+     * wish to use height as master dim, set $image->master_dim = Image::HEIGHT
+     * This method is chainable.
+     *
+     * @throws  CException
+     * @param   $width integer  width
+     * @param   $height integer  height
+     * @param   $master integer  one of: Image::NONE, Image::AUTO, Image::WIDTH, Image::HEIGHT
+     * @return  Image
+     */
+    public function cresize($width, $height, $master = NULL)
+    {
+        if (!$this->valid_size('width', $width))
+            throw new CException('image invalid width');
+
+        if (!$this->valid_size('height', $height))
+            throw new CException('image invalid height');
+
+        if (empty($width) AND empty($height))
+            throw new CException('image invalid dimensions');
+
+        if ($master === NULL) {
+            // Maintain the aspect ratio by default
+            $master = Image::AUTO;
+        } elseif (!$this->valid_size('master', $master))
+            throw new CException('image invalid master');
+        if ($this->width > $width && $this->height > $height)
+            $this->actions['resize'] = array
+            (
+                'width' => $width,
+                'height' => $height,
+                'master' => $master,
+            );
+
+        return $this;
+    }
 } // End Image
