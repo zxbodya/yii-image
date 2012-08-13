@@ -482,4 +482,14 @@ class Image
         return $res->crop($width, $height, 'center');
     }
 
+    public function fit($width, $height)
+    {
+        if ($this->width / $this->height > $width / $height) {
+            $res = $this->resize($width, null);
+        } else {
+            $res = $this->resize(null, $height);
+        }
+        return $res;
+    }
+
 } // End Image
