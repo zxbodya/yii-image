@@ -530,4 +530,11 @@ class Image
 
         return $this;
     }
+
+    public function watermark($path, $x, $y){
+        $this->actions['watermark'] = array
+        (
+            'path'=>$path, 'x'=>$x, 'y'=>$y,
+        );
+    }
 } // End Image
