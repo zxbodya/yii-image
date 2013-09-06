@@ -388,11 +388,20 @@ class Image_GD_Driver extends Image_Driver
     public function watermark($params)
     {
         $path = $params['path'];
-        $x = $params['x'];
-        $y = $params['y'];
+        $mark = imagecreatefrompng($path);
+        if(isset($params['x'])){
+            $x = $params['x'];
+        } else {
+            $x = (imagesx($this->tmp_image) - imagesx($mark))/2;
+        }
+        if(isset($params['y'])){
+            $y = $params['y'];
+        } else {
+            $y = (imagesy($this->tmp_image) - imagesy($mark))/2;
+        }
         imagealphablending($this->tmp_image, true);
         imagesavealpha($this->tmp_image, true);
-        $mark = imagecreatefrompng($path);
+
         imagecopyresized($this->tmp_image, $mark, $x, $y, 0, 0, imagesx($mark), imagesy($mark), imagesx($mark), imagesy($mark));
         imagedestroy($mark);
         return $this->tmp_image;

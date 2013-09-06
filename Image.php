@@ -533,7 +533,13 @@ class Image
         return $this;
     }
 
-    public function watermark($path, $x, $y){
+    /**
+     * Places watermark on image
+     * @param string $path path to png image
+     * @param null $x watermark X coordinate, if not set watermark is centered
+     * @param null $y watermark Y coordinate, if not set watermark is centered
+     */
+    public function watermark($path, $x=null, $y=null){
         $this->actions['watermark'] = array
         (
             'path'=>$path, 'x'=>$x, 'y'=>$y,
