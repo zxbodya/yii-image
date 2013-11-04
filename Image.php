@@ -522,7 +522,7 @@ class Image
             $master = Image::AUTO;
         } elseif (!$this->valid_size('master', $master))
             throw new CException('image invalid master');
-        if ((int)$this->width > (int)$width && (int)$this->height > (int)$height)
+        if ((int)$this->width > (int)$width || (int)$this->height > (int)$height)
             $this->actions['resize'] = array
             (
                 'width' => $width,
