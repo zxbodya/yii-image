@@ -391,11 +391,17 @@ class Image_GD_Driver extends Image_Driver
         $mark = imagecreatefrompng($path);
         if(isset($params['x'])){
             $x = $params['x'];
+            if($x<0){
+                $x = imagesx($this->tmp_image)-imagesx($mark)+$x;
+            }
         } else {
             $x = (imagesx($this->tmp_image) - imagesx($mark))/2;
         }
         if(isset($params['y'])){
             $y = $params['y'];
+            if($y<0){
+                $y = imagesy($this->tmp_image)-imagesy($mark)+$y;
+            }
         } else {
             $y = (imagesy($this->tmp_image) - imagesy($mark))/2;
         }
