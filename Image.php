@@ -464,8 +464,8 @@ class Image
             case 'master':
                 if ($value !== Image::NONE AND
                     $value !== Image::AUTO AND
-                        $value !== Image::WIDTH AND
-                            $value !== Image::HEIGHT
+                    $value !== Image::WIDTH AND
+                    $value !== Image::HEIGHT
                 )
                     return FALSE;
                 break;
@@ -492,6 +492,15 @@ class Image
             $res = $this->resize(null, $height);
         }
         return $res;
+    }
+
+    public function cfit($width, $height)
+    {
+        if ($this->width > $width || $this->height > $height) {
+            return $this->fit($width, $height);
+        } else {
+            return $this;
+        }
     }
 
     /**
@@ -541,10 +550,11 @@ class Image
      *
      * If coordinate is negative - it is calculated from oposite side of original
      */
-    public function watermark($path, $x=null, $y=null){
+    public function watermark($path, $x = null, $y = null)
+    {
         $this->actions['watermark'] = array
         (
-            'path'=>$path, 'x'=>$x, 'y'=>$y,
+            'path' => $path, 'x' => $x, 'y' => $y,
         );
     }
 } // End Image
