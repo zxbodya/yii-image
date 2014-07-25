@@ -82,7 +82,7 @@ class Image_ImageMagick_Driver extends Image_Driver
             // done to allow the file type to change correctly, and to handle
             // the quality conversion in the most effective way possible.
             $this->_args[] = '-quality ' . $quality . '%';
-            $error = exec(escapeshellcmd($this->dir . 'convert' . $this->ext) . ' ' . join(' ', $this->_args) . "$cmd_image $new_image");
+            $error = exec(escapeshellcmd($this->dir . 'convert' . $this->ext) . ' ' . join(' ', $this->_args) . " $cmd_image $new_image");
             if ($error) {
                 $this->errors[] = $error;
             } else {
